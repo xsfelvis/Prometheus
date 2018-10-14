@@ -8,7 +8,8 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.4'
-        
+        classpath 'com.novoda:bintray-release:0.8.0'//添加
+
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -20,6 +21,16 @@ allprojects {
         google()
         jcenter()
     }
+}
+
+//添加
+ext {
+    userOrg = 'androidxsf' //bintray.com用户名
+    groupId = 'com.xsfdev' //jcenter上的路径
+    publishVersion = '1.0.0' //版本号
+    desc = 'Core Tech named as Prometheus' //描述
+    website = 'https://github.com/xsfelvis/Prometheus' //网站，不重要；尽量模拟github上的地址
+    licences = ['Apache-2.0'] //开源协议
 }
 
 task clean(type: Delete) {
