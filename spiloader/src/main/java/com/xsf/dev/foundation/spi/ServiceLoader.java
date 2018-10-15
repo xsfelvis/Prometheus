@@ -4,6 +4,8 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.ServiceConfigurationError;
+
 
 public final class ServiceLoader<S> implements Iterable<S> {
 
@@ -35,14 +37,14 @@ public final class ServiceLoader<S> implements Iterable<S> {
     }
 
     private void load() {
-//        for (final Class<? extends S> provider : ServiceRegistry.get(this.mService)) {
-//            try {
-//                final S p = ServiceRegistry.newProvider(provider);
-//                this.mProviders.add(p);
-//            } catch (final Throwable t) {
-//                throw new ServiceConfigurationError("Provider " + provider.getName() + " could not be initialized", t);
-//            }
-//        }
+        for (final Class<? extends S> provider : ServiceRegistry.get(this.mService)) {
+            try {
+                final S p = ServiceRegistry.newProvider(provider);
+                this.mProviders.add(p);
+            } catch (final Throwable t) {
+                throw new ServiceConfigurationError("Provider " + provider.getName() + " could not be initialized", t);
+            }
+        }
     }
 
 }

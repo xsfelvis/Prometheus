@@ -33,7 +33,7 @@ dependencies {
     //apt'com.xsfdev:spi-service:1.0.1'
     annotationProcessor project(':spiservice')
     implementation 'com.xsfdev:spi-annotation:1.0.0'
-    implementation 'com.xsfdev:spi-loader:1.0.0'
+    implementation 'com.xsfdev:spi-loader:1.0.3'
 
 
 }
