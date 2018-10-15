@@ -1,9 +1,8 @@
-package com.xsf.dev.spiloader;
+package com.xsf.dev.foundation.spi;
 
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
-import java.util.ServiceConfigurationError;
 import java.util.Set;
 
 public final class ServiceLoader<S> implements Iterable<S> {

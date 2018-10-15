@@ -1,4 +1,4 @@
-package com.xsf.dev.spiservice;
+package com.xsf.dev.foundation.spi;
 
 import com.google.auto.service.AutoService;
 import com.squareup.javapoet.ClassName;

@@ -1,4 +1,4 @@
-package com.xsf.dev.spiregister;
+package com.xsf.dev.foundation.spi;
 
 import java.util.Set;
 
