@@ -28,7 +28,7 @@ allprojects {
 ext {
     userOrg = 'androidxsf' //bintray.com用户名
     groupId = 'com.xsfdev' //jcenter上的路径
-    publishVersion = '1.0.3' //版本号
+    publishVersion = '1.0.4' //版本号
     desc = 'Core Tech named as Prometheus' //描述
     website = 'https://github.com/xsfelvis/Prometheus' //网站，不重要；尽量模拟github上的地址
     licences = ['Apache-2.0'] //开源协议
