@@ -29,12 +29,22 @@ import javax.lang.model.util.ElementFilter;
 import javax.lang.model.util.Elements;
 
 /**
- * @author johnsonlee
+ * @author xsf
+ *
+ * @ServiceProviderInterface()
+ * public interface PrivateServiceInterface {
+ *     String getName();
+ *
+ *     String getSex();
+ * }
+ * 有关apt相关知识可以参考 https://xsfelvis.github.io/2018/06/06/%E8%B0%88%E8%B0%88APT%E5%92%8CJavaPoet%E7%9A%84%E4%B8%80%E4%BA%9B%E6%8A%80%E5%B7%A7/#more
  */
 @AutoService(Processor.class)
 public class ServiceProviderInterfaceProcessor extends AbstractProcessor {
 
     private Elements utils;
+    private Logger logger;
+
 
     @Override
     public Set<String> getSupportedAnnotationTypes() {
@@ -50,18 +60,24 @@ public class ServiceProviderInterfaceProcessor extends AbstractProcessor {
     public synchronized void init(final ProcessingEnvironment processingEnv) {
         super.init(processingEnv);
         this.utils = processingEnv.getElementUtils();
+        logger = new Logger(processingEnv.getMessager());
     }
 
     @Override
     public boolean process(final Set<? extends TypeElement> annotations, final RoundEnvironment roundEnv) {
-        for (final Element element : roundEnv.getElementsAnnotatedWith(ServiceProviderInterface.class)) {
+        for (final Element element : roundEnv.getElementsAnnotatedWith(ServiceProviderInterface.class)) { //解析注解元素
             if (element instanceof TypeElement) {
                 final TypeElement typeElement = (TypeElement) element;
-                final String packageName = getPackageName(typeElement);
-                final ClassName clazzSpi = ClassName.get(typeElement);
-                final ClassName clazzLoader = ClassName.get(getClass().getPackage().getName(), "ServiceLoader");
-                final ClassName clazzService = ClassName.get(packageName, getServiceName(typeElement));
-                final ClassName clazzSingleton = ClassName.get(packageName, clazzService.simpleName(), "Singleton");
+                final String packageName = getPackageName(typeElement); //获取包名
+                //获取类名的几种方式
+                final ClassName clazzSpi = ClassName.get(typeElement); //获取: PrivateServiceInterface
+                final ClassName clazzLoader = ClassName.get(getClass().getPackage().getName(), "ServiceLoader"); //获取: ServiceLoader
+                final ClassName clazzService = ClassName.get(packageName, getServiceName(typeElement)); //获取 PrivateServiceInterfaceService
+                final ClassName clazzSingleton = ClassName.get(packageName, clazzService.simpleName(), "Singleton"); //获取 Singleton
+                //MethodSpec 代表一个构造函数或方法声明。
+                //TypeSpec 代表一个类，接口，或者枚举声明。
+                //FieldSpec 代表一个成员变量，一个字段声明。
+                //JavaFile包含一个顶级类的Java文件。
                 final TypeSpec.Builder tsb = TypeSpec.classBuilder(clazzService)
                         .addJavadoc("Represents the service of {@link $T}\n", clazzSpi)
                         .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
@@ -84,11 +100,13 @@ public class ServiceProviderInterfaceProcessor extends AbstractProcessor {
                                 .returns(clazzService)
                                 .build());
 
-                System.out.println("Generate " + clazzService.toString());
-
+                //System.out.println("Generate " + clazzService.toString());
+                logger.info("Generate " + clazzService.toString());
+                //提取接口的函数
                 for (final ExecutableElement method : ElementFilter.methodsIn(typeElement.getEnclosedElements())) {
                     System.out.println(" + " + method);
                     final String methodName = method.getSimpleName().toString();
+                    //与描述Java程序中元素的信息，即Elment的元信息
                     final TypeMirror returnType = method.getReturnType();
                     final MethodSpec.Builder msb = MethodSpec.methodBuilder(methodName)
                             .addModifiers(Modifier.PUBLIC, Modifier.FINAL)

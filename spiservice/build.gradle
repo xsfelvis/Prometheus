@@ -1,7 +1,7 @@
 apply plugin: 'java-library'
 apply plugin: 'java'
 apply plugin: 'maven'
-//apply plugin: 'com.novoda.bintray-release'//添加Jcenter
+apply plugin: 'com.novoda.bintray-release'//添加Jcenter
 
 repositories {
     jcenter()
@@ -18,12 +18,12 @@ sourceCompatibility = "1.7"
 targetCompatibility = "1.7"
 
 //添加Jcenter
-//publish {
-//    artifactId = 'spi-service'//项目名称
-//    userOrg = rootProject.userOrg//bintray.com用户名
-//    groupId = rootProject.groupId//jcenter上的路径
-//    publishVersion = rootProject.publishVersion//版本号
-//    desc = rootProject.desc//描述
-//    website = rootProject.website
-//    licences = rootProject.licences
-//}
+publish {
+    artifactId = 'spi-service'//项目名称
+    userOrg = rootProject.userOrg//bintray.com用户名
+    groupId = rootProject.groupId//jcenter上的路径
+    publishVersion = rootProject.publishVersion//版本号
+    desc = rootProject.desc//描述
+    website = rootProject.website
+    licences = rootProject.licences
+}
