@@ -9,6 +9,11 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/spi-annotation" />
+            <option value="$PROJECT_DIR$/spi-loader" />
+            <option value="$PROJECT_DIR$/spi-plugin" />
+            <option value="$PROJECT_DIR$/spi-registry" />
+            <option value="$PROJECT_DIR$/spi-service" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
