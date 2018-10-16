@@ -9,9 +9,9 @@ repositories {
 }
 
 dependencies {
-    compile 'com.xsfdev:spi-annotation:1.0.0'
-    compile 'com.google.auto.service:auto-service:1.0-rc4'
-    compile 'com.squareup:javapoet:1.9.0'
+    api 'com.xsfdev:spi-annotation:1.0.0'
+    api 'com.google.auto.service:auto-service:1.0-rc4'
+    api 'com.squareup:javapoet:1.9.0'
 }
 
 sourceCompatibility = "1.7"
