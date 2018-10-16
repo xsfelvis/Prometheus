@@ -1,15 +1,23 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    
+
     repositories {
         google()
         jcenter()
+        mavenLocal()
+        flatDir {
+            name 'localRepository'
+            dir "spiplugin/localRepository/libs"
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.4'
         classpath 'com.novoda:bintray-release:0.8.0'//添加
-
+        classpath 'com.xsfdev:spi-plugin:1.0.0'//添加
+//        classpath(group: 'com.xsfdev', name: 'spiplugin', version: '1.1') {
+//            changing = true
+//        }
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -21,6 +29,14 @@ allprojects {
         google()
         jcenter()
         mavenCentral()  // add
+        mavenLocal()
+    }
+    tasks.withType(Javadoc) {
+        options {
+            encoding "UTF-8"
+            charSet 'UTF-8'
+            links "http://docs.oracle.com/javase/7/docs/api"
+        }
     }
 }
 
@@ -28,7 +44,7 @@ allprojects {
 ext {
     userOrg = 'androidxsf' //bintray.com用户名
     groupId = 'com.xsfdev' //jcenter上的路径
-    publishVersion = '1.0.5' //版本号
+    publishVersion = '1.0.0' //版本号
     desc = 'Core Tech named as Prometheus' //描述
     website = 'https://github.com/xsfelvis/Prometheus' //网站，不重要；尽量模拟github上的地址
     licences = ['Apache-2.0'] //开源协议

@@ -2,29 +2,44 @@ package com.xsf.dev.myapplication;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.TextUtils;
 import android.view.View;
-
-import com.xsf.dev.spiannotation.ServiceProvider;
-import com.xsf.dev.spiloader.ServiceLoader;
+import android.widget.TextView;
 
 
-@ServiceProvider(value = View.OnClickListener.class, priority = 3)
-
-public class MainActivity extends Activity implements View.OnClickListener{
+public class MainActivity extends Activity implements View.OnClickListener {
+    private TextView tvMsg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        for (final View.OnClickListener listener : ServiceLoader.load(View.OnClickListener.class)) {
-            Log.i("MainActivity", listener.toString());
-        }
+        init();
     }
+
+    private void init() {
+        tvMsg = findViewById(R.id.tvShowMsg);
+        tvMsg.setOnClickListener(this);
+    }
+
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tvShowMsg:
+                showMsg();
+                break;
+        }
 
+    }
+
+    private void showMsg() {
+        String spiMsg = getSpIMsg();
+        tvMsg.setText(spiMsg);
+    }
+
+    private String getSpIMsg() {
+        //String spiStr = PrivateServiceInterfaceService.getInstance().getName();
+        return "";
     }
 }

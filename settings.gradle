@@ -1,1 +1,2 @@
-include ':app', ':spiannotation', ':spiloader', ':spiregister', ':spiservice'
+//include ':app', ':spiannotation', ':spiloader', ':spiregister', ':spiservice', ':spiplugin'
+include ':app'

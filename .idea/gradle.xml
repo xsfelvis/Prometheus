@@ -9,10 +9,6 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/spiannotation" />
-            <option value="$PROJECT_DIR$/spiloader" />
-            <option value="$PROJECT_DIR$/spiregister" />
-            <option value="$PROJECT_DIR$/spiservice" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
