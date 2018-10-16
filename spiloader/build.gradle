@@ -10,6 +10,7 @@ repositories {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     api 'com.xsfdev:spi-registry:1.0.0'
+    api 'com.xsfdev:spi-annotation:1.0.0'
 }
 
 sourceCompatibility = "1.7"
