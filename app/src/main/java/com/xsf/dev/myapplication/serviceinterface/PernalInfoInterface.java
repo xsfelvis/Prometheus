@@ -7,8 +7,8 @@ package com.xsf.dev.myapplication.serviceinterface;
  * Description:
  */
 //@ServiceProviderInterface
-public interface PrivateServiceInterface {
+public interface PernalInfoInterface {
     String getName();
 
-    String getSex();
+    String getPhone();
 }

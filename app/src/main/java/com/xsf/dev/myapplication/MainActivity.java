@@ -2,13 +2,18 @@ package com.xsf.dev.myapplication;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
+import com.xsf.dev.foundation.spi.ServiceLoader;
+import com.xsf.dev.myapplication.serviceinterface.PernalInfoServiceImppl;
+import com.xsf.dev.myapplication.serviceinterface.PernalInfoInterface;
+import com.xsf.dev.spiannotation.ServiceProvider;
 
+@ServiceProvider(value = View.OnClickListener.class, priority = 3)
 public class MainActivity extends Activity implements View.OnClickListener {
     private TextView tvMsg;
+    private PernalInfoServiceImppl mPrivateServiceInterface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,17 +34,17 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.tvShowMsg:
                 showMsg();
                 break;
+            default:
+                break;
         }
 
     }
 
     private void showMsg() {
-        String spiMsg = getSpIMsg();
+        String spiMsg = PernalInfoService.getInstance().getName();
         tvMsg.setText(spiMsg);
+
+
     }
 
-    private String getSpIMsg() {
-        //String spiStr = PrivateServiceInterfaceService.getInstance().getName();
-        return "";
-    }
 }
