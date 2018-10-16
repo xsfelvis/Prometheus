@@ -15,7 +15,7 @@ public class ServiceProviderInterfacePlugin implements Plugin<Project> {
     @Override
     void apply(final Project project) {
         project.dependencies {
-            compile 'com.xsfdev:spi-loader:1.0.4'
+            compile 'com.xsfdev:spi-loader:1.0.6'
         }
 
         project.afterEvaluate {
