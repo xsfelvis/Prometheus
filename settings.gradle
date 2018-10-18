@@ -1,2 +1,2 @@
-//include ':app', ':spi-annotation', ':spi-loader', ':spi-registry', ':spi-service', ':spi-plugin'
-include ':app'
+include ':app', ':spi-annotation', ':spi-loader', ':spi-registry', ':spi-service', ':spi-plugin'
+//include ':app'

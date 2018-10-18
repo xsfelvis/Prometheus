@@ -51,7 +51,7 @@ public class ServiceRegistryGenerationTask extends DefaultTask {
         this.servicesDir = servicesDir;
     }
 
-    @TaskAction
+    @TaskAction // 加上这个action的作用是当执行这个task的时候会自动执行这个方法
     protected void generate() {
         this.setDidWork(new ServiceRegistryGenerationAction(this.classpath, this.servicesDir, this.sourceDir).execute());
     }
