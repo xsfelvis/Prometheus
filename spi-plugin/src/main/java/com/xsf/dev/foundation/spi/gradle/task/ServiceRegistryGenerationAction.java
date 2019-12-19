@@ -118,7 +118,6 @@ class ServiceRegistryGenerationAction {
 
                 try {
                     stream = new FileInputStream(f);
-                    classes.add(pool.makeClass(stream));
                 } finally {
                     if (null != stream) {
                         try {
@@ -165,10 +164,11 @@ class ServiceRegistryGenerationAction {
             final List<CtClass> classes = loadClasses();
             if (null != classes && classes.size() > 0) {
                 for (final CtClass cc : classes) {
+                    //生成服务名称以及优先级 在intermediates/spi/debug/services目录下
                     processClass(cc);
                 }
             }
-
+            //生成真正实现类在intermediates/spi/debug/src目录下
             generateSourceCode();
         } catch (Exception e) {
             throw new GradleException("Could not generate ServiceRegistry", e);

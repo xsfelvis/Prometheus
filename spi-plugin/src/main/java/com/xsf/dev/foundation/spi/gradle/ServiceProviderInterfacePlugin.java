@@ -25,9 +25,10 @@ public class ServiceProviderInterfacePlugin implements Plugin<Project> {
         project.getDependencies().add("implementation", "com.xsfdev:spi-loader:" + project.getRootProject().getVersion());
         project.afterEvaluate(p -> {
             if (!project.getPlugins().hasPlugin("com.android.application")) {
+                //只对主工程使用插件
                 return;
             }
-
+            //获取ASL
             final AppExtension android = project.getExtensions().getByType(AppExtension.class);
 
             android.getApplicationVariants().forEach(variant -> {
