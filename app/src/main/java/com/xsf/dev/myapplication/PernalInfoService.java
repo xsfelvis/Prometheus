@@ -12,6 +12,7 @@ public class PernalInfoService implements PernalInfoInterface {
     private final PernalInfoInterface mDelegate = ServiceLoader.load(PernalInfoInterface.class).get();
 
     private PernalInfoService() {
+        
     }
 
     public static final PernalInfoService getInstance() {
